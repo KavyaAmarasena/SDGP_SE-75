@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/meet.css" />
+    <title>Meet</title>
+  </head>
+  <body>
+    <div class="mainContainer">
+      <div class="presenter">
+        <div class="screen">
+          <img
+            id="present-icon"
+            src="../../resources/images/presenter.png"
+            alt="presenter-image"
+          />
+        </div>
+        <div class="controls">
+          <button class="button" id="audioButton">
+            <img
+              src="../../resources/images/microphone-off.png"
+              alt="mic off"
+              height="25px"
+              width="25px"
+            />
+          </button>
+
+          <button class="button" id="videoButton" value="OFF">
+            <img
+              src="../../resources/images/video-on.png"
+              alt="video on"
+              height="25px"
+              width="25px"
+            />
+            <!-- <div class="button" id="videoButton" value="OFF"></div> -->
+          </button>
+
+          <button class="button" id="shareButton" value="OFF">
+            <img
+              src="../../resources/images/share-icon.png"
+              alt="share-icon"
+              width="25px"
+              height="25px"
+            />
+          </button>
+
+          <button class="button" id="messageButton">
+            <img
+              src="../../resources/images/message-icon.png"
+              alt="share-icon"
+              height="25px"
+              width="25px"
+            />
+          </button>
+
+          <button class="button" id="usersButton">
+            <img
+              src="../../resources/images/multiple-users.png"
+              alt="users-icon"
+              height="25px"
+              width="25px"
+            />
+          </button>
+        </div>
+      </div>
+      <div class="sidePopup">
+        <div id="videos">
+          <video class="video-player" id="user-1" autoplay playsinline></video>
+          <video class="video-player" id="user-2" autoplay playsinline></video>
+          <video class="video-player" id="user-3" autoplay playsinline></video>
+        </div>
+      </div>
+      <!-- <div class="studentsPanel">
+        <div id="videos">
+          
+          <video class="video-player" id="user-2" autoplay playsinline></video>
+        </div>
+      </div> -->
+    </div>
+  </body>
+  <script src="../../backend/agora-rtm-sdk-1.5.1.js"></script>
+  <script src="../js/meet.js"></script>
+  <script src="../../backend/meet.js"></script>
+</html>
