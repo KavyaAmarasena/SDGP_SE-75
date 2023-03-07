@@ -1,0 +1,177 @@
+/*nav bar*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: "ubuntu";
+}
+img {
+  width: 100%;
+}
+header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  background: #0b2239;
+}
+header .header-left {
+  display: flex;
+  align-items: center;
+}
+header .header-left .logo {
+  width: 140px;
+}
+header .header-left nav {
+  margin-left: 50px;
+}
+header .header-left nav ul {
+  display: flex;
+}
+nav ul li a {
+  display: block;
+  color: #cfd9e0;
+  font-size: 18px;
+  padding: 5px 10px;
+  transition: 0.2s;
+}
+nav ul li a:hover,
+nav ul li a.active {
+  color: #fff;
+}
+
+@media only screen and (max-width: 1000px) {
+  header {
+      padding: 0 20px;
+  }
+  
+  header .header-left nav {
+      margin: 0;
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: fit-content;
+      background-color: #0b2239;
+      padding: 30px;
+      transition: 0.3s;
+      text-align: center;
+      z-index: -1;
+  }
+  header .header-left nav.active {
+      top: 70px;
+  }
+  header .header-left nav ul {
+      display: block;
+  }
+}
+
+/*2box styling*/
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+section{
+    display:inline;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background: white;
+    background-position: top;
+    background-size:auto;
+    
+}
+
+.form-box{
+    position:relative;
+    height: 450px;
+    background: rgb(82, 59, 123);
+    border: 2px solid wrgb(82, 59, 123);
+    border-radius: 0 0 20px 20px;
+    
+    display: flex;
+    justify-content: top;
+    align-items: top;
+
+}
+
+.info{
+    position:absolute;
+    right: 0;
+    width: 750px;
+    height: 448px;
+    background: transparent;
+    border: 2px solid rgb(82, 59, 123);
+    border-radius: 20px 0 20px 20px;
+    backdrop-filter:blur(448px);
+    display: flex;
+    justify-content: top;
+    align-items: top;
+
+}
+
+/*logo*/
+.logo1 {
+  position:absolute;
+  left: 10%;
+  width: 350px;
+  height: 250px;
+}
+
+
+/*search bar*/
+
+
+  .search-box{
+    position: absolute;
+    top: 75%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    background: #2f3640;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+  }
+
+  .search-box:hover > .search-txt{
+    background: white;
+  }
+
+  .search-box:hover > .search-btn{
+    width: 240px;
+    padding: 0 6px;
+  }
+
+  .search-btn{
+    color: white;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2f3640;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+  }
+
+  .search-txt{
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+  }
+

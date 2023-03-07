@@ -1,0 +1,4 @@
+nav = document.querySelector("nav");
+
+
+    

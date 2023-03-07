@@ -1,0 +1,62 @@
+.btn{
+    border-radius: 40px;
+    border: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 1rem 0;
+    padding: 2rem 3rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn--primary{
+    background: dodgerblue;
+    color: white;
+}
+
+.btn--primary:hover{
+    background: rgb(3, 102, 201);
+}
+
+.btn--secondary{
+    background: darkturquoise;
+    color: white;
+}
+
+.btn--secondary:hover{
+    background: rgb(2,155,158);
+}
+
+.btn--accent{
+    background: orangered;
+    color: white;
+}
+
+.btn--accent:hover{
+    background: rgb(192,53,2);
+}
+
+.btn--outline{
+    background: #fff;
+    color: black;
+    border: 2px solid black;
+}
+
+.btn--outline:hover{
+    background: black;
+    color: #fff;
+}
+
+.btn--block{
+    width: 100%;
+    display: inline-block;
+}
+
+/*media query is when screen is getting larger than1024px */
+@media screen and (min-width:1024px) {
+    .btn{
+        font-size: 1.5rem;
+    }
+    
+}
