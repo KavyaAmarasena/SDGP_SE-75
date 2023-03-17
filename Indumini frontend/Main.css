@@ -1,22 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
 body {
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh; /* set the height of the container to the full viewport height */
+    
+  }
+
+  
+  .circle1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+    clip-path: circle(800px at right 800px );
+    filter:blur(5000px);
+  }
+
+  .circle2{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+    clip-path: circle(800px at left top );
+    filter:blur(5000px);
   }
   
 .card {
     display: flex;
     position: relative;
-    
     max-width: 75%;
     height: 75%;
-    
-    background-color: #fff;
+    background-image: linear-gradient(to top, #674188 0%, #C3ACD0 100%);
     border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    font-family: "Poppins";
   }
   
   .card img {
@@ -30,52 +55,33 @@ body {
     
   }
   
-  /*
-  .card-content {
+  .button {
+    background-image: linear-gradient(to top, #dad4ec 0%, #dad4ec 1%, #f3e7e9 100%);
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-size: 20px;
+    color: #000000;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
     
+  }
+
+  .button:hover {
+    background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
+    background-blend-mode: screen;
+  }
+
+  a.button {
+    text-decoration: none;
+  }
+  
+
+  .card-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    text-align: center;
+    padding: 25px;
     
-  }*/
-
-  .button {
-    background-color: rgb(82, 59, 123);
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
   }
-
-  .button:hover {
-    background-color: rgb(163, 155, 176);
-  }
-
-  .card-content {
-    
-   
-    justify-content: center;
-    align-items:center;
-    padding: 20px;
-    text-align:center;
-  }
- 
-
-  /*h1{
-    text-align: center;
-    padding: 5px;
-    position: relative
-    ri;
-  }
- 
-  h3{
-    text-align: center;
-  }*/
-  
-
