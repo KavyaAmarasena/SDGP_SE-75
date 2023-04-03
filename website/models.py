@@ -5,7 +5,7 @@ class Student(db.Model):
     std_fname = db.Column(db.String(40),nullable=False)
     std_lname = db.Column(db.String(40),nullable=False)
     std_email = db.Column(db.String(80),unique=True,nullable= False)
-    std_password_hash = db.Column(db.String(256),nullable= False)
+    std_pass = db.Column(db.String(256),nullable= False)
 
     @property
     def password(self):
