@@ -13,7 +13,7 @@
       <div class="box">
         <div class="inner-box">
           <div class="forms-wrap">
-            <form action="index.html" autocomplete="off" class="sign-in-form">
+            <form action="/login-student" autocomplete="off" class="sign-in-form" method="post">
               <div class="logo">
                 <img src="../static/images/Learnly.png" alt="easyclass" />
                 
@@ -28,6 +28,7 @@
               <div class="actual-form">
                 <div class="input-wrap">
                   <input
+                    name="username"
                     type="text"
                     minlength="4"
                     class="input-field"
@@ -39,6 +40,7 @@
 
                 <div class="input-wrap">
                   <input
+                    name="password"
                     type="password"
                     minlength="4"
                     class="input-field"
