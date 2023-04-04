@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,request,redirect,session,url_for,flash,Flask
+from flask import Blueprint,render_template,request,redirect,session,url_for,flash,json
 from flask_sqlalchemy import SQLAlchemy
 import jwt
 import sqlite3
@@ -70,7 +70,6 @@ def login_student():
                 print(password)
                 print(type(password))
 
-
                 cursor = con.cursor()
                 try:
                     
@@ -90,17 +89,26 @@ def login_student():
                     # that was stored in the database if its true then it redirects to the dashboard
                     if(check_password_hash(std_password_hash_str,password)):
 
-                        cursor.execute('SELECT std_id FROM Student WHERE (std_id = ? OR std_email = ?)',(username,username))
+                        cursor.execute('SELECT std_id,std_fname,std_lname FROM Student WHERE (std_id = ? OR std_email = ?)',(username,username))
 
-                        std_id_list = cursor.fetchall()
-                        std_id = std_id_list[0]
-                        std_id_str = ''.join(map(str,std_id))
+                        std_details = cursor.fetchall()
+                        std_id = list(std_details[0])
+                        # std_id_str = ''.join(map(str,std_id))
+
+                        # print(std_id[0])
+                        # print(type(std_id))
 
                         session["logged_in"] = True
-                        token = create_token(std_id_str)
+                        session["std_id"] = std_id[0]
+                        session["std_fname"] = std_id[1]
+                        session["std_lname"] = std_id[2]
+                        
+                        token = create_token(std_id[0],std_id[1],std_id[2])
+                        session["token"] = token
+
                         print(token)
 
-                        print(std_id_str)
+                        print(std_details)
 
                         return redirect(url_for('views.dashboard_student'))
                     else:
@@ -115,15 +123,30 @@ def login_student():
     
     return render_template('login_student.html')
 
-@app.route("/create-token")
-def create_token(usr_id):
-     token = jwt.encode({
-          'user_id': usr_id
-     },app.config['SECRET_KEY'],algorithm='HS256')
+@auth.route("/create-token")
+def create_token(usr_id,usr_fname,usr_lname):
+    token = jwt.encode({
+          'user_id': usr_id,
+          'usr_fname': usr_fname,
+          'usr_lname': usr_lname
+    },app.config['SECRET_KEY'],algorithm='HS256')
 
-     return token
+    return token
 
-@auth.route("/logout")
+
+@auth.route('/logout')
 def logout():
-    return "<p>Logout</p>"
+    # session['logged_in'] = False
+    session.pop("logged_in",None)
+    return redirect(url_for("views.home"))
 
+@auth.route("/user_id")
+def get_id():
+    if session.get('logged_in'):
+        std_id = session.get('std_id')
+        std_fname = session.get('std_fname')
+        std_lname = session.get('std_lname')
+        token = session.get('token')
+        return f"Hello, {std_id} {std_fname} {std_lname}  {token}"
+    else:
+        return redirect(url_for("views.home"))

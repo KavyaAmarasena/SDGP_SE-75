@@ -20,8 +20,3 @@ def dashboard_student():
 @views.route("/homepage-teacher/<tchr_id>")
 def dashboard_teacher(tchr_id):
     return render_template("homepage_teacher.html")
-
-@views.route("/logout")
-def logout():
-    session.pop("logged_in",None)
-    return redirect(url_for("views.home"))

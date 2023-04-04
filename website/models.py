@@ -1,5 +1,9 @@
+from flask import Blueprint
 from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
+from sqlalchemy import ForeignKey
+
+models = Blueprint('models',__name__)
 class Student(db.Model):
     std_id = db.Column(db.String(10),primary_key=True)
     std_fname = db.Column(db.String(40),nullable=False)
@@ -26,4 +30,7 @@ class Teacher(db.Model):
     tchr_pass = db.Column(db.String(256),nullable= False)
 
 
-
+class Meeting(db.Model):
+    meeting_id = db.Column(db.String(10),primary_key=True)
+    subject = db.Column(db.String(40),nullable=False)
+    tchr_id = db.Column(db.String(10),ForeignKey("Teacher.tchr_id",ondelete="CASCADE"),nullable=False)
