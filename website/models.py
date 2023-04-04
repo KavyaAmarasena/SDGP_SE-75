@@ -1,18 +1,36 @@
-from . import db 
-from flask_login import UserMixin
-from sqlalchemy.sql import func 
+from flask import Blueprint
+from . import db
+from werkzeug.security import generate_password_hash,check_password_hash
+from sqlalchemy import ForeignKey
 
-class User(db.Model,UserMixin):
-    user_id = db.Column(db.String(8),primary_key=True)
-    user_email = db.Column(db.String(30),unique=True)
-    user_name = db.column(db.String(150))
-    password = db.Column(db.String(150))
-    user_type = db.column(db.String(10))
-    scores = db.relationship('Score')
+models = Blueprint('models',__name__)
+class Student(db.Model):
+    std_id = db.Column(db.String(10),primary_key=True)
+    std_fname = db.Column(db.String(40),nullable=False)
+    std_lname = db.Column(db.String(40),nullable=False)
+    std_email = db.Column(db.String(80),unique=True,nullable= False)
+    std_pass = db.Column(db.String(256),nullable= False)
 
-class Score(db.Model):
-    score_id = db.Column(db.Integer,primary_key=True)
-    score_value = db.Column(db.Integer)
-    date = db.Column(db.DateTime(timezone=True),default=func.now())
-    user_id = db.Column(db.Integer,db.ForeignKey('user.user_id'))
+    @property
+    def password(self):
+        raise AttributeError ('Password is not a readable attribute !')
+    
+    @password.setter
+    def password(self,password):
+        self.std_password_hash = generate_password_hash(password)
+    
+    def verify_password(self,password):
+        return check_password_hash(self.std_password_hash,password)
 
+class Teacher(db.Model):
+    tchr_id = db.Column(db.String(10),primary_key=True)
+    tchr_fname = db.Column(db.String(40),nullable=False)
+    tchr_lname = db.Column(db.String(40),nullable=False)
+    tchr_email = db.Column(db.String(80),unique=True,nullable=False)
+    tchr_pass = db.Column(db.String(256),nullable= False)
+
+
+class Meeting(db.Model):
+    meeting_id = db.Column(db.String(10),primary_key=True)
+    subject = db.Column(db.String(40),nullable=False)
+    tchr_id = db.Column(db.String(10),ForeignKey("Teacher.tchr_id",ondelete="CASCADE"),nullable=False)

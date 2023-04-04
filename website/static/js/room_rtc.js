@@ -158,6 +158,7 @@ let handleUserLeft = async (user) => {
   }
 };
 
+// This function allows the user to share mic audio !!!
 let toggleMic = async (e) => {
   let button = e.currentTarget;
 
@@ -170,6 +171,7 @@ let toggleMic = async (e) => {
   }
 };
 
+// This function allows the user to share video !!!
 let toggleCamera = async (e) => {
   let button = e.currentTarget;
 
@@ -182,6 +184,7 @@ let toggleCamera = async (e) => {
   }
 };
 
+// This function allows the user to share the screen !!!
 let toggleScreen = async (e) => {
   let screenButton = e.currentTarget;
   let cameraButton = document.getElementById("camera-btn");
