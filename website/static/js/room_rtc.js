@@ -2,6 +2,46 @@ const APP_ID = "8fa2917a7ca246978d30ff24f541406b";
 
 let uid = sessionStorage.getItem("uid");
 
+let user_type;
+
+let usr_token;
+
+let std_id;
+let std_fname;
+let std_lname;
+
+let teacher_id;
+let teacher_fname;
+let teacher_lname;
+
+let displayName;
+
+fetch("/get-session")
+  .then((response) => response.json())
+  .then((data) => {
+    user_type = data.user_type;
+    user_token = data.token;
+    console.log("Hello !");
+    console.log(user_type);
+
+    if (user_type == "student") {
+      std_id = data.std_id;
+      std_fname = data.std_fname;
+      std_lname = data.std_lname;
+
+      displayName = `${std_fname} ${std_lname}`;
+    } else {
+      teacher_id = data.teacher_id;
+      teacher_fname = data.teacher_fname;
+      teacher_lname = data.teacher_lname;
+
+      displayName = `${teacher_fname} ${teacher_lname} ` + "(lec)";
+    }
+  });
+
+// checks whether the user logged in is a teacher or a student
+console.log(user_type);
+
 if (!uid) {
   uid = String(Math.floor(Math.random() * 10000));
   sessionStorage.setItem("uid", uid);
@@ -20,12 +60,6 @@ let roomId = urlParams.get("room");
 if (!roomId) {
   roomId = "main";
 }
-
-let displayName = sessionStorage.getItem("display_name");
-
-// if (!displayName) {
-//   window.location = "lobby.html";
-// }
 
 let localTracks = [];
 let remoteUsers = {};
@@ -233,8 +267,19 @@ let toggleScreen = async (e) => {
   }
 };
 
+let leave = async (e) => {
+  let button = e.currentTarget;
+
+  if (user_type == "teacher") {
+    location.href = "/homepage-teacher";
+  } else {
+    location.href = "/homepage-student";
+  }
+};
+
 document.getElementById("camera-btn").addEventListener("click", toggleCamera);
 document.getElementById("mic-btn").addEventListener("click", toggleMic);
 document.getElementById("screen-btn").addEventListener("click", toggleScreen);
+document.getElementById("leave-btn").addEventListener("click", leave);
 
 joinRoomInit();

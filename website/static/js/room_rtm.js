@@ -58,6 +58,26 @@ let sendMessage = async (e) => {
   e.preventDefault();
 
   let message = e.target.message.value;
+
+  let message_data = {
+    message: message,
+  };
+
+  if (user_type == "student") {
+    fetch("/api/verify-message", {
+      method: "Post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message_data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        let verification_msg = data.msg;
+        console.log(verification_msg);
+      });
+  }
+
   channel.sendMessage({
     text: JSON.stringify({
       type: "chat",

@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,request,redirect,session,url_for,flash,json
+from flask import Blueprint,render_template,request,redirect,session,url_for,flash,jsonify
 from flask_sqlalchemy import SQLAlchemy
 import jwt
 import sqlite3
@@ -46,17 +46,31 @@ def login_teacher():
                     # This method performs to see if the password entered by the user matches the hash value
                     # that was stored in the database if its true then it redirects to the dashboard
                     if(check_password_hash(tchr_password_hash_str,password)):
+
+                        cursor.execute('SELECT tchr_id,tchr_fname,tchr_lname FROM Teacher WHERE (tchr_id = ? OR tchr_email = ?)',(username,username))
+
+                        tchr_details = cursor.fetchall()
+                        tchr_info = list(tchr_details[0])
+
+                        session['user_type'] = 'teacher'
+                        session["logged_in"] = True
+                        session["tchr_id"] = tchr_info[0]
+                        session["tchr_fname"] = tchr_info[1]
+                        session["tchr_lname"] = tchr_info[2]
+                        
+                        token = create_token(tchr_info[0],tchr_info[1],tchr_info[2])
+                        session["token"] = token
+
                         return redirect(url_for('views.dashboard_teacher'))
                     else:
-                        flash("Incorrect username/password")
-                        print("Incorrect username/password")
+                        error_message = "Incorrect username or password ! Please try again"
+                        return render_template("login_teacher.html",error_message = error_message)
                        
                 except Error as e:
                     print(e)
             
             cursor.close()
             con.close()
-
 
     return render_template("login_teacher.html")
 
@@ -92,18 +106,18 @@ def login_student():
                         cursor.execute('SELECT std_id,std_fname,std_lname FROM Student WHERE (std_id = ? OR std_email = ?)',(username,username))
 
                         std_details = cursor.fetchall()
-                        std_id = list(std_details[0])
+                        std_info = list(std_details[0])
                         # std_id_str = ''.join(map(str,std_id))
 
                         # print(std_id[0])
                         # print(type(std_id))
-
+                        session['user_type'] = 'student'
                         session["logged_in"] = True
-                        session["std_id"] = std_id[0]
-                        session["std_fname"] = std_id[1]
-                        session["std_lname"] = std_id[2]
+                        session["std_id"] = std_info[0]
+                        session["std_fname"] = std_info[1]
+                        session["std_lname"] = std_info[2]
                         
-                        token = create_token(std_id[0],std_id[1],std_id[2])
+                        token = create_token(std_info[0],std_info[1],std_info[2])
                         session["token"] = token
 
                         print(token)
@@ -133,20 +147,37 @@ def create_token(usr_id,usr_fname,usr_lname):
 
     return token
 
-
 @auth.route('/logout')
 def logout():
     # session['logged_in'] = False
     session.pop("logged_in",None)
     return redirect(url_for("views.home"))
 
-@auth.route("/user_id")
-def get_id():
+@auth.route("/get-session")
+def get_session():
     if session.get('logged_in'):
-        std_id = session.get('std_id')
-        std_fname = session.get('std_fname')
-        std_lname = session.get('std_lname')
-        token = session.get('token')
-        return f"Hello, {std_id} {std_fname} {std_lname}  {token}"
+        user_type = session.get('user_type')
+
+        if(user_type == 'student'):
+            std_id = session.get('std_id')
+            std_fname = session.get('std_fname')
+            std_lname = session.get('std_lname')
+            return jsonify({
+                'user_type' : user_type,
+                'std_id' : std_id,
+                'std_fname' : std_fname,
+                'std_lname' : std_lname
+            })
+        else:
+            teacher_id = session.get('tchr_id')
+            teacher_fname = session.get('tchr_fname')
+            teacher_lname = session.get('tchr_lname')
+            return jsonify({
+                'user_type' : user_type,
+                'teacher_id' : teacher_id,
+                'teacher_fname' : teacher_fname,
+                'teacher_lname' : teacher_lname
+            })
+        
     else:
         return redirect(url_for("views.home"))
