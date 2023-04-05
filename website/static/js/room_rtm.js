@@ -81,6 +81,18 @@ let sendMessage = async (e) => {
 
         if (verification_msg == "correct") {
           // Score should be added to the database
+
+          let marks_data = {
+            marks: 20,
+          };
+
+          fetch("/api/update-score", {
+            method: "Post",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(marks_data),
+          });
         }
       });
   }

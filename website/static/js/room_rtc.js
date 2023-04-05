@@ -197,6 +197,20 @@ let toggleMic = async (e) => {
   let button = e.currentTarget;
 
   if (localTracks[0].muted) {
+    let marks_data = {
+      marks: 40,
+    };
+
+    if (user_type == "student") {
+      fetch("/api/update-score", {
+        method: "Post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(marks_data),
+      });
+    }
+
     await localTracks[0].setMuted(false);
     button.classList.add("active");
   } else {
@@ -210,6 +224,20 @@ let toggleCamera = async (e) => {
   let button = e.currentTarget;
 
   if (localTracks[1].muted) {
+    let marks_data = {
+      marks: 40,
+    };
+
+    if (user_type == "student") {
+      fetch("/api/update-score", {
+        method: "Post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(marks_data),
+      });
+    }
+
     await localTracks[1].setMuted(false);
     button.classList.add("active");
   } else {
@@ -225,6 +253,20 @@ let toggleScreen = async (e) => {
 
   if (!sharingScreen) {
     sharingScreen = true;
+
+    let marks_data = {
+      marks: 60,
+    };
+
+    if (user_type == "student") {
+      fetch("/api/update-score", {
+        method: "Post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(marks_data),
+      });
+    }
 
     screenButton.classList.add("active");
     cameraButton.classList.remove("active");

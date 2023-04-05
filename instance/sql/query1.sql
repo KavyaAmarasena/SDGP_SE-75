@@ -69,4 +69,4 @@ VALUES
 
 SELECT * FROM Marks;
 
-DROP TABLE Marks;
+                            

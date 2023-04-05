@@ -1,5 +1,9 @@
-from flask import Blueprint,jsonify,request
+from flask import Blueprint,jsonify,request,session
 from happytransformer import HappyTextToText,TTSettings
+import sqlite3
+from sqlite3 import Error
+from datetime import datetime
+
 
 api = Blueprint('api',__name__)
 
@@ -45,3 +49,29 @@ def verify_message():
             'msg': "incorrect"
         })
     return response
+
+@api.route('/update-score',methods=['POST','GET'])
+def update_score():
+    
+    data = request.json
+    marks = int(data['marks'])
+    std_id = session.get("std_id")
+    meeting_id = "M001"
+
+    message = 'message'
+
+    if(request.method == 'POST'):
+        with sqlite3.connect("./instance/learnly.db") as con:
+
+            cursor = con.cursor()
+
+            try:
+                cursor.execute("INSERT INTO Marks (std_id,meeting_id,date,time,marks) VALUES (?,?,CURRENT_DATE,CURRENT_TIME,?)",(std_id,meeting_id,marks))
+                con.commit()
+
+                message = 'score has been added'
+                    
+            except Error as e:
+                print(e)
+    
+    return message
