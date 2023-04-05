@@ -44,5 +44,4 @@ def verify_message():
         response =  jsonify({
             'msg': "incorrect"
         })
-
     return response

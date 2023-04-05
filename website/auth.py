@@ -126,8 +126,8 @@ def login_student():
 
                         return redirect(url_for('views.dashboard_student'))
                     else:
-                        flash("Incorrect username/password")
-                        print("Incorrect username/password")
+                        error_message = "Incorrect username or password ! Please try again"
+                        return render_template("login_student.html",error_message = error_message)
                        
                 except Error as e:
                     print(e)

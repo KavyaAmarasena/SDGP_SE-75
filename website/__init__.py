@@ -21,7 +21,7 @@ def create_app():
     app.register_blueprint(auth,url_prefix="/")
     app.register_blueprint(api,url_prefix="/api")
 
-    from .models import Student,Teacher
+    # from .models import Student,Teacher
 
     create_database(app)
 

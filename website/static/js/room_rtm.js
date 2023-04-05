@@ -63,6 +63,9 @@ let sendMessage = async (e) => {
     message: message,
   };
 
+  // This conditional checks whether user is a student or not
+  // This is checked because if its a student the message has to be routed to the ml model
+  // to be verified if it has grammatical issues to be scored
   if (user_type == "student") {
     fetch("/api/verify-message", {
       method: "Post",
@@ -75,6 +78,10 @@ let sendMessage = async (e) => {
       .then((data) => {
         let verification_msg = data.msg;
         console.log(verification_msg);
+
+        if (verification_msg == "correct") {
+          // Score should be added to the database
+        }
       });
   }
 
