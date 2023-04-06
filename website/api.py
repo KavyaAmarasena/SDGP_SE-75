@@ -75,3 +75,32 @@ def update_score():
                 print(e)
     
     return message
+
+@api.route("/get-scores",methods=['GET'])
+def get_scores():
+    if(request.method == "GET"):
+        with sqlite3.connect("./instance/learnly.db") as con:
+
+            cursor = con.cursor()
+
+            try:
+                cursor.execute("SELECT marks.std_id,student.std_fname,student.std_lname,SUM(marks) as total_marks FROM Marks marks JOIN Student student ON marks.std_id = student.std_id WHERE date = '2023-04-05' GROUP BY marks.std_id;")
+                rows = cursor.fetchall();
+
+                result = []
+
+                for row in rows:
+                    result.append({
+                        'std_id': row[0],
+                        'std_fname': row[1],
+                        'std_lname': row[2],
+                        'total_marks': row[3]
+                    })
+                    
+            except Error as e:
+                print(e)
+
+        cursor.close()
+        con.close()
+    
+    return jsonify(result)

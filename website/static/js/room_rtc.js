@@ -16,6 +16,7 @@ let teacher_lname;
 
 let displayName;
 
+// gets the details of the user from the backend using a http request
 fetch("/get-session")
   .then((response) => response.json())
   .then((data) => {

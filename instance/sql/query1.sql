@@ -69,4 +69,8 @@ VALUES
 
 SELECT * FROM Marks;
 
-                            
+SELECT marks.std_id,student.std_fname,student.std_lname,SUM(marks) as total_marks
+FROM Marks marks JOIN Student student
+ON marks.std_id = student.std_id
+WHERE date = '2023-04-05'
+GROUP BY marks.std_id;

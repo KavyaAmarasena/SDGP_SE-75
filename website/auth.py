@@ -94,6 +94,10 @@ def login_student():
                     #The fetchall() methods fetches all the data returned from the query 
                     std_password_hash_list = cursor.fetchall()
 
+                    if len(std_password_hash_list) ==0:
+                        error_message = "Incorrect username or password ! Please try again"
+                        return render_template("login_student.html",error_message = error_message)
+
                     #the std_password_has is a tuple
                     std_password_hash = std_password_hash_list[0]
                     #In order to use check_password_hash we need to get the string of the std_password_hash tuple
