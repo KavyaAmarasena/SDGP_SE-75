@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/x-icon" href="Learnly.png">
+   <title>HOME</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="admin_style.css">
+
+</head>
+    <body>
+        <header class="header">
+
+            <section class="flex">
+         
+               <a href="../uploaded_files/home.html" class="logo">LEARNLY</a>
+         
+               <form action="search_course.php" method="post" class="search-form">
+                  <input type="text" name="search_course" placeholder="search courses..." required maxlength="100">
+                  <button type="submit" class="fas fa-search" name="search_course_btn"></button>
+               </form>
+         
+               <div class="icons">
+                  <div id="menu-btn" class="fas fa-bars"></div>
+                  <div id="search-btn" class="fas fa-search"></div>
+                  <div id="user-btn" class="fas fa-user"></div>
+                  <div id="toggle-btn" class="fas fa-sun"></div>
+               </div>
+         
+               <div class="profile">
+                  
+                  <img src="uploaded_files/<?= $fetch_profile['image']; ?>" alt="">
+                  <h3><?= $fetch_profile['name']; ?></h3>
+                  <span>student</span>
+                  <a href="profile.php" class="btn">view profile</a>
+                  
+                  <a href="components/user_logout.php" onclick="return confirm('logout from this website?');" class="delete-btn">logout</a>
+                  
+                  </div>
+                  
+               </div>
+         
+            </section>
+         
+         </header>
+         
+         <!-- header section ends -->
+         
+         <!-- side bar section starts  -->
+         
+         <div class="side-bar">
+         
+            <div class="close-side-bar">
+               <i class="fas fa-times"></i>
+            </div>
+         
+            <div class="profile">
+      
+                  <img src="uploaded_files/<?= $fetch_profile['image']; ?>" alt="">
+                  <h3><?= $fetch_profile['name']; ?></h3>
+                  <span>student</span>
+                  <a href="profile.php" class="btn">view profile</a>
+                  
+               </div>
+         
+            <nav class="navbar">
+               <a href="home.php"><i class="fas fa-home"></i><span>home</span></a>
+               <a href="about.php"><i class="fas fa-question"></i><span>about us</span></a>
+               <a href="courses.php"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
+               <a href="contact.php"><i class="fas fa-headset"></i><span>contact us</span></a>
+            </nav>
+         
+         </div>
+        <!-- quick select section starts  -->
+
+        <section class="quick-select">
+
+        <h1 class="heading">MODULES</h1>
+
+        <div class="box-container">
+
+            <div class="box tutor">
+                <h3 class="title">MODULE 01: Object Oriented Programming</h3>
+                <p>Object-oriented programming is a computer programming model that organizes software design data, or objects, rather than functions and logic.</p>
+                <div class="scard">
+                    <button class="open-btn">Details</button>
+                </div>
+                <div class="cookie">
+                    <span class="close">&times;</span>
+                    <img src="" alt="">
+                    <h3>sdfaffdfsdf</h3>
+                    <p>fffffffff</p>
+                    <a href="" class="accept">Join meeting</a>
+                    
+                </div>
+            </div>
+
+        </div>
+
+        </section>
+
+        <!-- quick select section ends -->
+
+
+        <!-- footer section starts  -->
+        
+        <!-- footer section ends -->
+
+        <!-- custom js file link  -->
+        <script src="script.js"></script>
+        <script src="admin_script.js"></script>
+    
+    </body>
+</html>
+
+<style>
+.scard .open-btn{
+  background: green;
+  color: white;
+  border-radius: 5px;
+  height: 50px;
+  width: 200px;
+  font-size: 20px;
+  box-shadow: 0 10px 15px rgba(0,0,0,.2);
+  cursor: pointer;
+}
+
+.scard .open-btn:hover{
+  letter-spacing: 1px;
+}
+
+.scard .open-btn:active{
+  box-shadow: none;
+  transform: scale(.9);
+}
+
+.cookie{
+  width: 350px;
+  position: fixed;
+  bottom: 100px;
+  left: -400px;
+  z-index: 1000;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px rgba(0,0,0,.2);
+  text-align: center;
+  padding: 30px;
+}
+
+.cookie.active{
+  left: 20px;
+}
+
+.cookie img{
+  height: 110px;
+  animation: image 10s linear infinite;
+}
+
+@keyframes image{
+  0%{
+    transform: rotate(360deg);
+  }
+}
+
+.cookie h3{
+  color: aqua;
+  font-size: 23px;
+  padding: 5px 0;
+}
+
+.cookie p{
+  color: rgb(132, 163, 163);
+  font-size: 13px;
+  padding: 5px 0;
+  line-height: 1.8;
+}
+
+.cookie .accept{
+  background: orange;
+  color: white;
+  border-radius: 5px;
+  display: block;
+  margin: 15px 0;
+  padding: 10px;
+}
+
+.cookie .accept:hover{
+  letter-spacing: 1px;
+  opacity: .8;
+}
+
+.cookie .setting{
+  color: rgb(3, 3, 3);
+  
+}
+
+.cookie .setting:hover{
+  color: orange;
+}
+
+.cookie .close{
+  position: absolute;
+  top: -2px;
+  right: 12px;
+  font-size: 40px;
+  color: gray;
+  cursor: pointer;
+}
+
+.cookie .close:hover{
+  color: #51336b;
+}
+
+</style>
+<script>
+   document.querySelector('.open-btn').onclick = () =>{
+   document.querySelector('.cookie').classList.add('active');
+ }
+ 
+ document.querySelector('.close').onclick = () =>{
+   document.querySelector('.cookie').classList.remove('active');
+ }
+</script>
