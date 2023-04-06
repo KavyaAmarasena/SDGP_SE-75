@@ -31,6 +31,11 @@ def login_teacher():
                     #The fetchall() methods fetches all the data returned from the query 
                     tchr_password_hash_list = cursor.fetchall()
 
+                    if len(tchr_password_hash_list) ==0:
+                        error_message = "Incorrect username or password ! Please try again"
+                        return render_template("login_teacher.html",error_message = error_message)
+
+
                     # print(type(std_password_hash_list))
 
                     #the std_password_has is a tuple
