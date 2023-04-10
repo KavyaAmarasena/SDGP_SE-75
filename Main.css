@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+*{
+  font-family: "Poppins";
+}
+
+body {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* set the height of the container to the full viewport height */  
+  }
+
+  .circle1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+    clip-path: circle(800px at right 800px );
+    filter:blur(5000px);
+  }
+
+  .circle2{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+    clip-path: circle(800px at left top );
+    filter:blur(5000px);
+  }
+  
+  .card {
+      display: flex;
+      position: relative;
+      width: 80%;
+      height: 75%;
+      background-image: linear-gradient(to top, #674188 0%, #C3ACD0 100%);
+      border-radius: 10px;
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+      overflow: hidden;  
+    }
+  
+  .card img {
+    width: auto;
+    height: auto;
+    position:relative;
+    left: 0;
+    display: flex;
+    border-radius: 10px; 
+  }
+
+  .card-content {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.2rem;
+  }
+
+  h5{
+    font-size: 1.48rem;
+  }
+
+  .button {
+    background-image: linear-gradient(to top, #b5aad7 0%, #dad4ec 1%, #e6e0f9 100%);
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-size: 1.3rem;
+    color: #000000;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 20px;
+  }
+
+  .button:hover {
+    background-image: radial-gradient(73% 147%, #7e6faf 59%, #e0d9f9 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
+    background-blend-mode: screen;
+  }
+
+  a.button {
+    text-decoration: none;
+  }
+  
+  /*
+  @media (max-width: 850px) {
+  .box {
+    height: auto;
+    max-width: 550px;
+    overflow: hidden;
+  }
+
+  .inner-box {
+    position: static;
+    transform: none;
+    width: revert;
+    height: revert;
+    padding: 2rem;
+  }
+
+  .forms-wrap {
+    position: revert;
+    width: 100%;
+    height: auto;
+  }
+
+  form {
+    max-width: revert;
+    padding: 1.5rem 2.5rem 2rem;
+    transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+  }
+
+  .heading {
+    margin: 2rem 0;
+  }
+
+  form.sign-up-form {
+    transform: translateX(100%);
+  }
+
+  main.sign-up-mode form.sign-in-form {
+    transform: translateX(-100%);
+  }
+
+  main.sign-up-mode form.sign-up-form {
+    transform: translateX(0%);
+  }
+
+  .carousel {
+    position: revert;
+    height: auto;
+    width: 100%;
+    padding: 3rem 2rem;
+    display: flex;
+  }
+
+  .images-wrapper {
+    display: none;
+  }
+
+  .text-slider {
+    width: 100%;
+  }
+}
+
+@media (max-width: 530px) {
+  main {
+    padding: 1rem;
+  }
+
+  .box {
+    border-radius: 2rem;
+  }
+
+  .inner-box {
+    padding: 1rem;
+  }
+
+  .carousel {
+    padding: 1.5rem 1rem;
+    border-radius: 1.6rem;
+  }
+
+  .text-wrap {
+    margin-bottom: 1rem;
+  }
+
+  .text-group h2 {
+    font-size: 1.2rem;
+  }
+
+  form {
+    padding: 1rem 2rem 1.5rem;
+  }
+}
